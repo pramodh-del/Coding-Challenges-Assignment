@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Store's Inventory</title>
+    <script src="inventoryConverter.js"></script>
+</head>
+
+<body>
+    <h1>Store's Inventory</h1>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price (USD)</th>
+            <th>Price (INR)</th>
+        </tr>
+        <tr>
+            <td>Item 1</td>
+            <td>10</td>
+            <td id="price1"></td>
+        </tr>
+        <tr>
+            <td>Item 2</td>
+            <td>20</td>
+            <td id="price2"></td>
+        </tr>
+        <tr>
+            <td>Item 3</td>
+            <td>30</td>
+            <td id="price3"></td>
+        </tr>
+        <tr>
+            <td>Item 4</td>
+            <td>40</td>
+            <td id="price4"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Store's inventory object with item prices in USD
+        var inventory = {
+            item1: 10,
+            item2: 20,
+            item3: 30,
+            item4: 40,
+        };
+
+        // Function to convert prices from USD to INR
+        function convertToINR(price) {
+            var exchangeRate = 80;
+            return price * exchangeRate;
+        }
+
+        // Convert prices in the inventory to INR using map
+        var inventoryINR = Object.fromEntries(
+            Object.entries(inventory).map(([item, price]) => [item, convertToINR(price)])
+        );
+
+        // Display the converted prices in Rupees
+        document.getElementById('price1').innerText = inventoryINR.item1;
+        document.getElementById('price2').innerText = inventoryINR.item2;
+        document.getElementById('price3').innerText = inventoryINR.item3;
+        document.getElementById('price4').innerText = inventoryINR.item4;
+    </script>
+</body>
+
+</html>
